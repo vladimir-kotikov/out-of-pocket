@@ -1,2 +1,7 @@
 node_modules
-dest
+.vscode
+.env
+.envrc
+
+# Generation remnants
+/*.epub
