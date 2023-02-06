@@ -2,6 +2,6 @@
 lint:
 	npm run fmt
 
-.PHONY: clean
-clean:
-	rm -rf tempDir book.epub
+.PHONY: image
+image:
+	docker build -t out-of-pocket .
