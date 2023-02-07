@@ -2,6 +2,7 @@ FROM node:18
 
 RUN apt-get update && apt-get install -y --no-install-recommends chromium
 RUN git clone https://github.com/vladimir-kotikov/percollate.git /opt/percollate
+RUN cd /opt/percollate && npm install && npm link
 
 WORKDIR /opt/app
 COPY package.json package-lock.json index.js epub.css ./

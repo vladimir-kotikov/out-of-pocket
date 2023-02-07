@@ -108,11 +108,10 @@ const pass = ensureEnv("SMTP_PASSWORD", process.env.SMTP_PASSWORD);
 const sendTo = ensureEnv("SEND_TO", process.env.SEND_TO);
 const processIntervalMin = Number(process.env.PROCESS_INTERVAL) || 15;
 
-Sentry.init({
-  dsn: "https://b8eaf83bc50b4cfeb8a0740b328cabe4@o333403.ingest.sentry.io/4504612464558080",
-});
+// Sentry reads SENTRY_DSN on its own
+Sentry.init();
 
-setInterval(async () => {
+const main = async () => {
   const tempDir = path.resolve(os.tmpdir(), randomUUID());
   fs.mkdirSync(tempDir, { recursive: true });
 
@@ -125,4 +124,7 @@ setInterval(async () => {
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
-}, processIntervalMin * 60 * 1000);
+};
+
+await main();
+setInterval(main, processIntervalMin * 60 * 1000);
