@@ -22,7 +22,7 @@ const ensureEnv = (name, value) => {
 const getLastFetchTime = async () => {
   try {
     const raw_time = await fs.promises.readFile("./last_fetch.dat", "utf-8");
-    return new Date(raw_time);
+    return new Date(raw_time || 0);
   } catch (error) {
     if (error.code === "ENOENT") {
       return new Date(0);
