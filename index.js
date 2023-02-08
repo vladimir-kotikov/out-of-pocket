@@ -113,9 +113,9 @@ Sentry.init();
 
 const main = async () => {
   const tempDir = path.resolve(os.tmpdir(), randomUUID());
-  fs.mkdirSync(tempDir, { recursive: true });
 
   try {
+    fs.mkdirSync(tempDir, { recursive: true });
     await processFeed(feedUrl, sendTo, { user, pass }, tempDir);
     console.log("✅ Done!");
   } catch (error) {
